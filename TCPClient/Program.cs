@@ -15,13 +15,13 @@ namespace EchoClientExpanded
             //Moved the socket, stream, reader and writer before the readline
             //so it can reuse the same objects until the connection is closed
 
-            TcpClient socket = new TcpClient("10.200.130.41", 7);
+            TcpClient socket = new TcpClient("localhost", 7);
 
             NetworkStream ns = socket.GetStream();
             StreamReader reader = new StreamReader(ns);
             StreamWriter writer = new StreamWriter(ns);
 
-            while (keepSending)
+            while (keepSending == true)
             {
                 string message = Console.ReadLine();
 
@@ -34,6 +34,8 @@ namespace EchoClientExpanded
 
                 //Here it reads all data send until a line break (cr lf) is received
                 //notice the Line part of the ReadLine
+                
+                
                 string response = reader.ReadLine();
 
                 //Writes the response it got from the server to the console
